@@ -136,11 +136,9 @@ void placeSeed(int seed)
 		seed--;
 	}
 }
-
-main()//самый боьшой костыль евер
+void ingame(int L,int W) //самый боьшой костыль евер
 {
-    int decision = 1; // 1 - curr, 0 - new
-
+	int decision = 1; // 1 - curr, 0 - new
     int counter = 0;
     char moving;
     int currenttime = 0;
@@ -151,27 +149,24 @@ main()//самый боьшой костыль евер
     int wanttoplay=1;
 
     table* mymap;
-    table MYMAP(10, 10);
+    table MYMAP(L, W);
     mymap = &MYMAP;
 
     square SQUARE(0);
     line LINE(0);
     teshka TESHKA(0);
     geshka GESHKA(0);
-    int seed=0;
 
     Figure* heap;
     Figure HEAP(0);
     heap = &HEAP;
 
     Figure* curr;
-    int dice_roll = distribution(generator);
-    cout<<"enter a seed"<< endl;
-    cin>> seed;
-    placeSeed(seed);
+    int dice_roll = distribution(generator);// объявления сложностей
     system("cls");
 	SetColor(7,0);
 	system("cls");
+	SetColor(6, 0);
 	cout << "Choose your level of difficult"<< endl;
 	SetColor(2,0);
 	cout<<"Easy -Left"<<endl;
@@ -180,9 +175,9 @@ main()//самый боьшой костыль евер
 	SetColor(4,0);
 	cout << "Hard-RIGHT"<< endl;
 	SetColor(5,0);
-	cout << "Exit-DOWN"<< endl;
+	cout << "to give up-DOWN"<< endl;
 	SetColor(7,0);
-		while(1)
+	while(1) // выбор уровня сложности
 	{ 
 		Sleep(1);
 		if (GetAsyncKeyState(VK_LEFT)) 
@@ -197,26 +192,23 @@ main()//самый боьшой костыль евер
 			currenttime = 10;
 			break;
 		}
-		if (GetAsyncKeyState(VK_UP)) // get w
+		if (GetAsyncKeyState(VK_UP)) 
 		{
 			currenttime=20;
 			break;
 		}
-		if (GetAsyncKeyState(VK_DOWN)) // get s
+		if (GetAsyncKeyState(VK_DOWN)) 
 		{
 			wanttoplay=0;
 			break;
 		}
 	}
-	SetColor(2,0);
-	cout<<"press any key if ready";
 	Sleep(1000);
-	getch();
 	system("cls");
     curr = &SQUARE;
     curr->gen(MYMAP);
 	
-    while(wanttoplay==1)//Цикл игры.Не хочу переделывать,так что сделал на goto, чтоб соотвествовать стилю.
+    while(wanttoplay==1)//Цикл игры.
     {
         if (!decision)
         {
@@ -299,5 +291,47 @@ main()//самый боьшой костыль евер
             break;
         }
     }
-    return 0;
+}
+int doyouwanttoplay()
+{
+	SetColor(6, 0);
+	cout<< "do you want to play ?"<< endl;
+	SetColor(2, 0);
+	cout<<" <- YES";
+	SetColor(4, 0);
+	cout<<" NO ->"<<endl;
+	while(1) // выбор решения
+	{ 
+		Sleep(1);
+		if (GetAsyncKeyState(VK_LEFT)) 
+		{
+			system("cls");
+			return 1;
+		}
+		if (GetAsyncKeyState(VK_RIGHT)) 
+		{
+			system("cls");
+			return 0;
+		}
+	}
+}
+
+main()
+{
+	int seed=0;
+	int L=0;
+	int W=0;
+	SetColor(6, 0);
+    cout<<"enter a seed"<< endl;
+    cin>> seed;
+    placeSeed(seed);
+    system("cls");
+    while(doyouwanttoplay()==1)
+    {
+    	SetColor(6, 0);
+    	cout <<endl<< "choose Lenght and Wide of field"<<endl;
+    	cin>>L;
+    	cin>>W;
+    	ingame(L,W);
+	}
 }
