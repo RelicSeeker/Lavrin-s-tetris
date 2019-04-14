@@ -7,11 +7,12 @@ class point
     public:
 
         int x, y;
+        int color;
 
         point(int x_, int y_);
         virtual ~point();
-
-
+        virtual void Setcolor(int c);
+        virtual int Getcolor();
     protected:
 
     private:

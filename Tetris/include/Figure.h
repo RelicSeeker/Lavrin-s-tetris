@@ -16,7 +16,9 @@ class Figure
 
         void set_cord(point p);
         void clear_all();
-        int if_exist(point p);
+        int if_exist(point* p);
+        int where_exist(point* p);
+        int whatcolor(int i);
         int detect_colision(Figure* enemy);
 
         void up(table map_);
@@ -30,10 +32,13 @@ class Figure
 
         virtual void gen(table map_);
         virtual void rot(table map_, Figure* enemy);
+        virtual int getcolor();
+        virtual void setcolor(int c);
+        int color;
 
     protected:
 
-        int color;
+       
 
     private:
 };
