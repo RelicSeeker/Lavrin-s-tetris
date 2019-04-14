@@ -9,3 +9,12 @@ point::~point()
 {
     //dtor
 }
+void point::Setcolor(int c)
+{
+	color = c;
+}
+
+int point::Getcolor()
+{
+	return color;
+}

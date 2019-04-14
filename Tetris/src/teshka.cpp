@@ -17,6 +17,10 @@ void teshka::gen(table map_)
     point p2(2,1);
     point p3(3,1);
     point p4(2,2);
+    p1.Setcolor(3);
+    p2.Setcolor(3);
+    p3.Setcolor(3);
+    p4.Setcolor(3);
 
     set_cord(p2);
     set_cord(p1);

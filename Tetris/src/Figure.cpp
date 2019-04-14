@@ -1,6 +1,6 @@
 #include "Figure.h"
 
-Figure::Figure(int color_ = 0)
+Figure::Figure(int color_)
 {
     color = color_;
 }
@@ -44,13 +44,13 @@ int Figure::detect_colision(Figure* enemy)
     return flag;
 }
 
-int Figure::if_exist(point p)
+int Figure::if_exist(point* p)
 {
     int flag = 0;
 
     for(unsigned int i=0; i<spisok.size(); i++)
     {
-        if ( (p.x == spisok[i].x) && (p.y == spisok[i].y) )
+        if ( (p->x == spisok[i].x) && (p->y == spisok[i].y) )
         {
             flag = 1;
             break;
@@ -59,7 +59,23 @@ int Figure::if_exist(point p)
 
     return flag;
 }
-
+int Figure::where_exist(point* p)
+{
+	int flag = 0;
+    for(unsigned int i=0; i<spisok.size(); i++)
+    {
+        if ( (p->x == spisok[i].x) && (p->y == spisok[i].y) )
+        {
+            flag = i;
+            break;
+        }
+    }
+    return flag;	
+}
+int Figure::whatcolor(int i)
+{
+	return spisok[i].Getcolor();
+}
 void Figure::right(table map_, Figure* enemy)
 {
     int flag = 0; // 0 - Ok, >0 - exit from the board
@@ -167,11 +183,13 @@ void Figure::clear_line(int y)
         if(spisok[i].y < y)
         {
             point slide(spisok[i].x, spisok[i].y + 1);
+            slide.Setcolor(spisok[i].Getcolor());
             cash.push_back(slide);
         }
         if(spisok[i].y > y)
         {
             point slide(spisok[i].x, spisok[i].y );
+            slide.Setcolor(spisok[i].Getcolor());
             cash.push_back(slide);
         }
     }
@@ -212,3 +230,18 @@ int Figure::del_full_lines(table map_)
     }
     return result;
 }
+
+int Figure::getcolor()
+{
+	return color;
+}
+
+void Figure::setcolor(int c)
+{
+	color=c;
+	for(unsigned int i=0; i<spisok.size(); i++)
+    {
+        spisok[i].Setcolor(color);
+    }
+}
+

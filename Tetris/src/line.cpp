@@ -16,6 +16,11 @@ void line::gen(table map_)
     point p2(1,0);
     point p3(1,-1);
     point p4(1,-2);
+    p1.Setcolor(2);
+    p2.Setcolor(2);
+    p3.Setcolor(2);
+    p4.Setcolor(2);
+
 
     set_cord(p1);
     set_cord(p2);

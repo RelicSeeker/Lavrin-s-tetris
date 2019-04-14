@@ -16,6 +16,10 @@ void geshka::gen(table map_)
     point p2(1,0);
     point p3(1,-1);
     point p4(2,-1);
+    p1.Setcolor(4);
+    p2.Setcolor(4);
+    p3.Setcolor(4);
+    p4.Setcolor(4);
 
     set_cord(p3);
     set_cord(p2);
