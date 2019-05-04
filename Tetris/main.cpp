@@ -1,6 +1,16 @@
 #include <iostream>
 #include "table.h"
 #include "table.cpp"
+#include "conio.h"
+#include <iostream>
+#include <stdlib.h>
+#include <cstdlib>
+#include <stdlib.h>
+#include <chrono>
+#include <thread>
+#include <random>
+#include "windows.h"
+#include "time.h"
 
 #include "square.h"
 #include "square.cpp"
@@ -10,19 +20,11 @@
 #include "teshka.cpp"
 #include "geshka.h"
 #include "geshka.cpp"
-#include <iostream>
-#include <stdlib.h>
-#include <cstdlib>
-
 #include "point.h"
 #include "point.cpp"
-#include "conio.h"
-#include <stdlib.h>
-#include <chrono>
-#include <thread>
-#include <random>
-#include "windows.h"
-#include "time.h"
+#include "ingame/"
+
+
 
 using namespace std;
 using namespace std::this_thread; // sleep_for, sleep_until
@@ -319,8 +321,8 @@ int doyouwanttoplay()
 main()
 {
 	int seed=0;
-	int L=0;
-	int W=0;
+	int L=10;
+	int W=10;
 	SetColor(6, 0);
     cout<<"enter a seed"<< endl;
     cin>> seed;
@@ -328,10 +330,10 @@ main()
     system("cls");
     while(doyouwanttoplay()==1)
     {
-    	SetColor(6, 0);
-    	cout <<endl<< "choose Lenght and Wide of field"<<endl;
-    	cin>>L;
-    	cin>>W;
+    	//SetColor(6, 0);
+    	//cout <<endl<< "choose Lenght and Wide of field"<<endl;
+    	//cin>>L;
+    	//cin>>W;
     	ingame(L,W);
 	}
 }
